@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Shorts Creator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create YouTube Shorts from Reactions</h1>
+        <form method="POST">
+            <label for="url">Enter YouTube Video URL:</label>
+            <input type="url" name="url" id="url" placeholder="https://youtube.com/..." required>
+            <button type="submit">Process Video</button>
+        </form>
+        {% if shorts %}
+            <h2>Generated Shorts:</h2>
+            <ul>
+                {% for short in shorts %}
+                    <li><a href="{{ url_for('download_file', filename=short) }}" download>{{ short }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
